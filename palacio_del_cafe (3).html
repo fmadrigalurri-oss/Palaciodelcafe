@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Palacio del Café — Aroma Digital</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --c0: #FBF8F2;
+  --c1: #F2E9D8;
+  --c2: #E0CDB0;
+  --c3: #C9A97A;
+  --c4: #A87848;
+  --c5: #7B4F2E;
+  --c6: #4E2D12;
+  --c7: #2A1208;
+  --gold: #C49A3C;
+  --gold-light: #E8C97A;
+  --text: #2A1208;
+  --text-muted: #7B6040;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: #1A0C04;
+  font-family: 'Jost', sans-serif;
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+  padding: 48px 16px 72px;
+  min-height: 100vh;
+}
+.shell {
+  width: 100%; max-width: 700px;
+  background: var(--c0);
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(196,154,60,.25), 0 40px 120px rgba(0,0,0,.7), 0 8px 32px rgba(0,0,0,.4);
+  animation: rise .8s cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes rise { from { opacity:0; transform:translateY(32px); } to { opacity:1; transform:translateY(0); } }
+
+/* HERO */
+.hero {
+  background: var(--c7); padding: 56px 48px 48px;
+  text-align: center; position: relative; overflow: hidden;
+}
+.hero-grain {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+  opacity:.6;
+}
+.hero-rings { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
+.hero-rings span {
+  position:absolute; border-radius:50%;
+  border:1px solid rgba(196,154,60,.07);
+  top:50%; left:50%; transform:translate(-50%,-50%);
+}
+.hero-rings span:nth-child(1){width:200px;height:200px;}
+.hero-rings span:nth-child(2){width:340px;height:340px;}
+.hero-rings span:nth-child(3){width:500px;height:500px;}
+.hero-rings span:nth-child(4){width:680px;height:680px;}
+.logo-mark {
+  position:relative; width:64px; height:64px;
+  margin:0 auto 28px;
+  display:flex; align-items:center; justify-content:center;
+}
+.logo-mark::before {
+  content:''; position:absolute; inset:0; border-radius:50%;
+  border:1px solid var(--gold); opacity:.55;
+  animation:pulse-ring 3s ease-in-out infinite;
+}
+.logo-mark::after {
+  content:''; position:absolute; inset:7px; border-radius:50%;
+  border:1px solid rgba(196,154,60,.25);
+}
+@keyframes pulse-ring { 0%,100%{transform:scale(1);opacity:.55;} 50%{transform:scale(1.09);opacity:.9;} }
+.logo-mark svg { position:relative; z-index:1; }
+.hero-label {
+  font-size:10px; font-weight:600; letter-spacing:4px; text-transform:uppercase;
+  color:var(--gold); margin-bottom:14px;
+}
+.hero h1 {
+  font-family:'Cormorant Garamond',serif; font-size:3.8rem; font-weight:700;
+  color:var(--c0); line-height:.93; letter-spacing:-1px; margin-bottom:6px;
+}
+.hero h1 em { font-style:italic; font-weight:300; color:var(--gold-light); }
+.hero-sub {
+  font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.2rem;
+  font-weight:300; color:rgba(251,248,242,.5); margin-top:16px; letter-spacing:.4px;
+}
+.gold-line {
+  width:48px; height:1px;
+  background:linear-gradient(to right,transparent,var(--gold),transparent);
+  margin:24px auto 0;
+}
+
+/* SECTIONS */
+.sec { padding:44px 48px; border-bottom:1px solid var(--c2); }
+.sec:last-child { border-bottom:none; }
+.sec-head { display:flex; align-items:center; gap:14px; margin-bottom:28px; }
+.sec-icon {
+  width:36px; height:36px; flex-shrink:0; background:var(--c7);
+  border-radius:50%; display:flex; align-items:center; justify-content:center;
+}
+.sec-icon svg { width:15px; height:15px; }
+.sec-kicker {
+  font-size:9px; font-weight:600; letter-spacing:3px; text-transform:uppercase;
+  color:var(--gold); display:block; margin-bottom:3px;
+}
+.sec-title {
+  font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:700;
+  color:var(--c7); letter-spacing:-.3px;
+}
+
+/* OBJETIVO */
+.obj-body {
+  background:var(--c7); border-radius:3px; padding:28px 32px; position:relative; overflow:hidden;
+}
+.obj-body::before {
+  content:'"'; position:absolute; top:-18px; left:18px;
+  font-family:'Cormorant Garamond',serif; font-size:140px; color:rgba(196,154,60,.07);
+  line-height:1; pointer-events:none;
+}
+.obj-body p {
+  font-family:'Cormorant Garamond',serif; font-size:1.18rem; font-weight:300;
+  font-style:italic; color:var(--c1); line-height:1.72; position:relative;
+}
+.obj-body p strong { font-weight:600; font-style:normal; color:var(--gold-light); }
+
+/* PROBLEMAS */
+.prob-list { display:flex; flex-direction:column; gap:10px; }
+.prob-item {
+  display:grid; grid-template-columns:42px 1fr; background:var(--c1);
+  border-radius:3px; overflow:hidden; transition:transform .2s;
+}
+.prob-item:hover { transform:translateX(3px); }
+.prob-num {
+  background:var(--c6); color:var(--gold-light);
+  font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:700;
+  display:flex; align-items:center; justify-content:center;
+}
+.prob-text { padding:14px 18px; font-size:.84rem; font-weight:500; line-height:1.5; color:var(--c6); }
+
+/* IA GRID */
+.ia-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; }
+.ia-card {
+  background:var(--c1); border-radius:3px; padding:20px 18px;
+  border-top:2px solid transparent; transition:border-color .25s,transform .2s;
+}
+.ia-card:hover { border-top-color:var(--gold); transform:translateY(-3px); }
+.ia-card-icon {
+  width:32px; height:32px; background:var(--c7); border-radius:50%;
+  display:flex; align-items:center; justify-content:center; margin-bottom:12px;
+}
+.ia-card-icon svg { width:13px; height:13px; }
+.ia-card h4 { font-size:.7rem; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--c5); margin-bottom:6px; }
+.ia-card p { font-size:.79rem; line-height:1.55; color:var(--text-muted); }
+
+/* ISO */
+.iso-band {
+  background:linear-gradient(90deg,var(--c7),var(--c6),var(--c7));
+  text-align:center; padding:7px; margin-bottom:22px; border-radius:2px;
+}
+.iso-band span { font-size:9px; font-weight:600; letter-spacing:4px; text-transform:uppercase; color:var(--gold); }
+.iso-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.iso-card {
+  background:var(--c1); border-radius:3px; padding:20px 16px;
+  text-align:center; transition:transform .2s;
+}
+.iso-card:hover { transform:translateY(-4px); }
+.iso-ico {
+  width:40px; height:40px; background:var(--c7); border-radius:50%;
+  display:flex; align-items:center; justify-content:center; margin:0 auto 12px;
+}
+.iso-ico svg { width:17px; height:17px; }
+.iso-card h4 { font-size:.7rem; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:var(--c5); margin-bottom:6px; }
+.iso-card p { font-size:.78rem; line-height:1.5; color:var(--text-muted); }
+
+/* ESTRATEGIA */
+.strat-grid { display:flex; flex-direction:column; gap:18px; }
+.strat-row { display:grid; grid-template-columns:52px 1fr; gap:16px; align-items:start; }
+.strat-num {
+  font-family:'Cormorant Garamond',serif; font-size:2.2rem; font-weight:700;
+  color:var(--c2); line-height:1; text-align:right; padding-top:2px;
+}
+.strat-content h4 { font-size:.78rem; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:var(--c5); margin-bottom:5px; }
+.strat-content p {
+  font-size:.84rem; line-height:1.6; color:var(--text-muted);
+  border-left:2px solid var(--c2); padding-left:12px;
+}
+
+/* BENEFICIOS */
+.ben-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.ben-card {
+  background:var(--c1); border-radius:3px; padding:20px 18px;
+  display:grid; grid-template-columns:38px 1fr; gap:14px; align-items:start;
+  transition:transform .2s;
+}
+.ben-card:hover { transform:translateY(-2px); }
+.ben-icon {
+  width:38px; height:38px; background:var(--c7); border-radius:50%;
+  display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px;
+}
+.ben-icon svg { width:16px; height:16px; }
+.ben-card h4 { font-size:.76rem; font-weight:600; letter-spacing:.5px; text-transform:uppercase; color:var(--c5); margin-bottom:4px; }
+.ben-card p { font-size:.79rem; line-height:1.5; color:var(--text-muted); }
+
+/* ══════════════ TIMELINE ══════════════ */
+.tl-sec {
+  background:var(--c7); padding:48px 48px 52px; position:relative; overflow:hidden;
+}
+.tl-sec::before {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}
+.tl-top {
+  display:flex; align-items:flex-end; justify-content:space-between;
+  margin-bottom:32px; position:relative; flex-wrap:wrap; gap:16px;
+}
+.tl-top-left .tl-kicker {
+  font-size:9px; font-weight:600; letter-spacing:4px; text-transform:uppercase;
+  color:var(--gold); display:block; margin-bottom:6px;
+}
+.tl-top-left h2 {
+  font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:700;
+  color:var(--c0); letter-spacing:-.5px;
+}
+.tl-prog-wrap { text-align:right; }
+.tl-prog-label {
+  font-size:.65rem; font-weight:600; letter-spacing:1px; text-transform:uppercase;
+  color:rgba(251,248,242,.3); display:block; margin-bottom:8px;
+}
+.tl-prog-track {
+  width:110px; height:2px; background:rgba(251,248,242,.1);
+  border-radius:2px; overflow:hidden; margin-left:auto;
+}
+.tl-prog-fill {
+  height:100%;
+  background:linear-gradient(to right,var(--c4),var(--gold));
+  border-radius:2px; transition:width .5s cubic-bezier(.22,1,.36,1); width:0%;
+}
+
+/* Pills */
+.tl-pills { display:flex; gap:6px; margin-bottom:32px; }
+.tl-pill {
+  flex:1; background:rgba(251,248,242,.04); border:1px solid rgba(251,248,242,.09);
+  border-radius:2px; padding:9px 4px; text-align:center; cursor:pointer;
+  transition:all .25s; user-select:none;
+}
+.tl-pill:hover { background:rgba(251,248,242,.09); border-color:rgba(196,154,60,.35); }
+.tl-pill.done { background:rgba(196,154,60,.13); border-color:rgba(196,154,60,.45); }
+.pill-num {
+  font-size:.58rem; font-weight:600; letter-spacing:1.5px; text-transform:uppercase;
+  color:rgba(251,248,242,.25); display:block; margin-bottom:4px; transition:color .25s;
+}
+.tl-pill.done .pill-num { color:var(--gold); }
+.pill-indicator { display:flex; align-items:center; justify-content:center; height:14px; margin-bottom:3px; }
+.pill-dot { width:5px; height:5px; border-radius:50%; background:rgba(251,248,242,.18); transition:all .25s; }
+.tl-pill.done .pill-dot { display:none; }
+.pill-check { display:none; }
+.tl-pill.done .pill-check { display:block; }
+.pill-lbl {
+  font-size:.58rem; font-weight:500; color:rgba(251,248,242,.22);
+  transition:color .25s; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; padding:0 3px;
+}
+.tl-pill.done .pill-lbl { color:rgba(251,248,242,.55); }
+
+/* Steps track */
+.tl-track { position:relative; padding-left:0; }
+.tl-track::before {
+  content:''; position:absolute; left:20px; top:24px; bottom:24px; width:1px;
+  background:linear-gradient(to bottom, rgba(196,154,60,.6), rgba(196,154,60,.08));
+}
+
+.tl-step { display:grid; grid-template-columns:40px 1fr; gap:20px; padding:10px 0; cursor:pointer; }
+
+.tl-dot-col { display:flex; flex-direction:column; align-items:center; position:relative; z-index:1; }
+.tl-dot {
+  width:40px; height:40px; border-radius:50%; flex-shrink:0;
+  background:rgba(251,248,242,.05); border:1px solid rgba(251,248,242,.1);
+  display:flex; align-items:center; justify-content:center;
+  transition:all .35s cubic-bezier(.22,1,.36,1); position:relative;
+}
+.tl-dot::after {
+  content:''; position:absolute; inset:-5px; border-radius:50%;
+  border:1px solid transparent; transition:border-color .35s;
+}
+.tl-step.active .tl-dot {
+  background:var(--gold); border-color:var(--gold);
+  box-shadow:0 0 24px rgba(196,154,60,.45);
+}
+.tl-step.active .tl-dot::after { border-color:rgba(196,154,60,.25); }
+.dot-num {
+  font-family:'Cormorant Garamond',serif; font-size:1.05rem; font-weight:700;
+  color:rgba(251,248,242,.28); transition:color .35s;
+}
+.tl-step.active .dot-num { color:var(--c7); }
+
+/* Step card */
+.tl-card {
+  background:rgba(251,248,242,.04); border:1px solid rgba(251,248,242,.07);
+  border-radius:3px; padding:18px 22px;
+  transition:all .35s cubic-bezier(.22,1,.36,1); margin-bottom:4px;
+}
+.tl-step.active .tl-card {
+  background:rgba(251,248,242,.07);
+  border-color:rgba(196,154,60,.28); border-left:2px solid var(--gold);
+}
+.tl-step:not(.active):hover .tl-card { background:rgba(251,248,242,.055); border-color:rgba(251,248,242,.12); }
+
+.card-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:9px; }
+.card-meta { display:flex; align-items:center; gap:10px; }
+.card-phase {
+  font-size:.58rem; font-weight:600; letter-spacing:2px; text-transform:uppercase;
+  color:rgba(251,248,242,.22); transition:color .35s;
+}
+.tl-step.active .card-phase { color:var(--gold); }
+.card-badge {
+  font-size:.58rem; font-weight:600; letter-spacing:1px; text-transform:uppercase;
+  padding:3px 8px; border-radius:20px;
+  background:rgba(251,248,242,.06); color:rgba(251,248,242,.28);
+  border:1px solid rgba(251,248,242,.09); transition:all .35s;
+}
+.tl-step.active .card-badge {
+  background:rgba(196,154,60,.14); color:var(--gold-light); border-color:rgba(196,154,60,.28);
+}
+.card-toggle {
+  width:22px; height:22px; border-radius:50%; background:rgba(251,248,242,.05);
+  display:flex; align-items:center; justify-content:center; transition:all .3s; flex-shrink:0;
+}
+.tl-step.active .card-toggle { background:rgba(196,154,60,.18); }
+.card-toggle svg { width:10px; height:10px; transition:transform .3s; }
+.tl-step.open .card-toggle svg { transform:rotate(180deg); }
+
+.card-title {
+  font-family:'Cormorant Garamond',serif; font-size:1.12rem; font-weight:600;
+  color:rgba(251,248,242,.42); margin-bottom:4px; transition:color .35s; letter-spacing:-.2px;
+}
+.tl-step.active .card-title { color:var(--c0); }
+.card-desc { font-size:.77rem; line-height:1.6; color:rgba(251,248,242,.25); transition:color .35s; }
+.tl-step.active .card-desc { color:rgba(251,248,242,.48); }
+
+/* Expandable */
+.card-details { max-height:0; overflow:hidden; transition:max-height .4s cubic-bezier(.22,1,.36,1); }
+.tl-step.open .card-details { max-height:400px; }
+.deliverables { border-top:1px solid rgba(251,248,242,.07); margin-top:14px; padding-top:14px; }
+.del-label { font-size:.58rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:rgba(251,248,242,.22); margin-bottom:10px; }
+.del-item {
+  display:flex; align-items:flex-start; gap:10px; margin-bottom:8px;
+  font-size:.77rem; line-height:1.5; color:rgba(251,248,242,.44);
+}
+.del-dot { width:4px; height:4px; min-width:4px; border-radius:50%; background:var(--gold); margin-top:6px; }
+.card-footer {
+  display:flex; align-items:center; justify-content:space-between;
+  margin-top:12px; padding-top:10px; border-top:1px solid rgba(251,248,242,.06);
+}
+.card-dur { font-size:.68rem; color:rgba(251,248,242,.22); display:flex; align-items:center; gap:5px; }
+.card-dur svg { width:10px; height:10px; opacity:.45; }
+
+/* FOOTER */
+.footer {
+  background:var(--c7); padding:28px 48px;
+  display:flex; align-items:center; justify-content:center; gap:16px;
+  border-top:1px solid rgba(196,154,60,.12);
+}
+.footer-dot { width:3px; height:3px; border-radius:50%; background:var(--gold); opacity:.45; }
+.footer p { font-size:.66rem; font-weight:500; letter-spacing:2.5px; text-transform:uppercase; color:rgba(251,248,242,.28); }
+
+@media(max-width:560px){
+  .hero{padding:40px 24px 36px;}
+  .hero h1{font-size:2.7rem;}
+  .sec,.tl-sec{padding:32px 24px;}
+  .ia-grid,.iso-grid,.ben-grid{grid-template-columns:1fr;}
+  .footer{padding:24px;}
+  .tl-top{flex-direction:column;align-items:flex-start;}
+  .tl-prog-wrap{text-align:left;}
+  .tl-prog-track{margin-left:0;}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-grain"></div>
+    <div class="hero-rings"><span></span><span></span><span></span><span></span></div>
+    <div class="logo-mark">
+      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="36" height="36">
+        <circle cx="20" cy="20" r="17" stroke="#C49A3C" stroke-width="1" stroke-opacity=".5"/>
+        <path d="M13 27C13 21 15 17 20 15C25 17 27 21 27 27" stroke="#C49A3C" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+        <ellipse cx="20" cy="27" rx="7" ry="2.2" stroke="#C49A3C" stroke-width="1" stroke-opacity=".6"/>
+        <path d="M20 15C20 11 24 9 24 9" stroke="#C49A3C" stroke-width="1" stroke-linecap="round" fill="none" stroke-opacity=".45"/>
+        <path d="M17 13C17 10 20 9 20 9" stroke="#C49A3C" stroke-width=".8" stroke-linecap="round" fill="none" stroke-opacity=".3"/>
+      </svg>
+    </div>
+    <div class="hero-label">Estrategia de Innovación · 2026</div>
+    <h1>Palacio<br><em>del Café</em></h1>
+    <div class="hero-sub">Aroma Digital: Inteligencia al Servicio de la Tradición</div>
+    <div class="gold-line"></div>
+  </div>
+
+  <!-- OBJETIVO -->
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#C49A3C" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="3" x2="12" y2="8"/></svg>
+      </div>
+      <div>
+        <span class="sec-kicker">Objetivo Principal</span>
+        <div class="sec-title">Visión Estratégica</div>
+      </div>
+    </div>
+    <div class="obj-body">
+      <p>Fomentar la <strong>convergencia estratégica</strong> entre la innovación tecnológica y la tradición cafetalera, utilizando la inteligencia artificial para mejorar la eficiencia operativa, <strong>preservar la autenticidad de la marca</strong> y elevar la experiencia del cliente.</p>
+    </div>
+  </div>
+
+  <!-- PROBLEMAS -->
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#C49A3C" stroke-width="1.5" stroke-linecap="round"><path d="M12 2L2 19h20L12 2z"/><line x1="12" y1="9" x2="12" y2="13"/><circle cx="12" cy="17" r=".5" fill="#C49A3C"/></svg>
+      </div>
+      <div>
+        <span class="sec-kicker">Diagnóstico</span>
+        <div class="sec-title">Problema a Resolver</div>
+      </div>
+    </div>
+    <div class="prob-list">
+      <div class="prob-item">
+        <div class="prob-num">01</div>
+        <div class="prob-text">Fragmentación de datos y procesos desconectados que dificultan la toma de decisiones integrada.</div>
+      </div>
+      <div class="prob-item">
+        <div class="prob-num">02</div>
+        <div class="prob-text">Pérdida de eficiencia en la gestión del tiempo y recursos debido a tareas manuales repetitivas.</div>
+      </div>
+      <div class="prob-item">
+        <div class="prob-num">03</div>
+        <div class="prob-text">Falta de comunicación fluida y unificada entre departamentos, impactando la consistencia del servicio.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IA -->
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#C49A3C" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 12l2 2 4-4"/></svg>
+      </div>
+      <div>
+        <span class="sec-kicker">Soluciones Tecnológicas</span>
+        <div class="sec-title">Cómo Ayuda la IA</div>
+      </div>
+    </div>
+    <div class="ia-grid">
+      <div class="ia-card">
+        <div class="ia-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#C49A3C" stroke-width="1.5" stroke-linecap="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
+        </div>
+        <h4>Unificación de Datos</h4>
+        <p>Integra información dispersa para una visión holística y análisis predictivo en tiempo real.</p>
+      </div>
+      <div class="ia-card">
+        <div class="ia-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#C49A3C" stroke-width="1.5" stroke-linecap="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <h4>Tono y Personalización</h4>
+        <p>Comunicación consistente y auténtica que refleja fielmente la identidad de la marca.</p>
+      </div>
+      <div class="ia-card">
+        <div class="ia-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#C49A3C" stroke-width="1.5" stroke-linecap="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        </div>
+        <h4>Sostenibilidad</h4>
+        <p>Automatiza tareas rutinarias liberando tiempo para la innovación y calidad artesanal.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ISO -->
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#C49A3C" stroke-width="1.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div>
+        <span class="sec-kicker">Marco Normativo</span>
+        <div class="sec-title">Sustento ISO/IEC 42001</div>
+      </div>
+    </div>
+    <div class="iso-band"><span>ISO / IEC 42001 — Inteligencia Artificial Responsable</span></div>
+    <div class="iso-grid">
+      <div class="iso-card">
+        <div class="iso-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#C49A3C" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg>
+        </div>
+        <h4>Gobernanza Responsable</h4>
+        <p>Marco ético y transparente para el desarrollo y uso de la IA.</p>
+      </div>
+      <div class="iso-card">
+        <div class="iso-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#C49A3C" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        </div>
+        <h4>Seguridad de Datos</h4>
+        <p>Controles regulares para proteger la confidencialidad e integridad crítica.</p>
+      </div>
+      <div class="iso-card">
+        <div class="iso-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#C49A3C" stroke-width="1.5" stroke-linecap="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        </div>
+        <h4>Supervisión y Auditoría</h4>
+        <p>Cumplimiento continuo y mejora mediante evaluaciones periódicas del sistema.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ESTRATEGIA -->
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#C49A3C" stroke-width="1.5" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <div>
+        <span class="sec-kicker">Liderazgo</span>
+        <div class="sec-title">Estrategia de Transformación</div>
+      </div>
+    </div>
+    <div class="strat-grid">
+      <div class="strat-row">
+        <div class="strat-num">01</div>
+        <div class="strat-content">
+          <h4>Fomento de la Cultura</h4>
+          <p>Promueve una mentalidad de innovación y colaboración, valorando la aportación humana junto con la tecnología.</p>
+        </div>
+      </div>
+      <div class="strat-row">
+        <div class="strat-num">02</div>
+        <div class="strat-content">
+          <h4>Capacitar y Empoderamiento</h4>
+          <p>Invierte en el desarrollo de habilidades digitales para que el equipo aproveche al máximo las herramientas de IA, reforzando su rol en la tradición artesanal.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BENEFICIOS -->
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#C49A3C" stroke-width="1.5" stroke-linecap="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+      </div>
+      <div>
+        <span class="sec-kicker">Resultados</span>
+        <div class="sec-title">Beneficios Esperados</div>
+      </div>
+    </div>
+    <div class="ben-grid">
+      <div class="ben-card">
+        <div class="ben-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C49A3C" stroke-width="1.5" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+        <div><h4>Mayor Eficiencia</h4><p>Optimización de recursos y reducción de tiempos operativos en toda la organización.</p></div>
+      </div>
+      <div class="ben-card">
+        <div class="ben-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C49A3C" stroke-width="1.5" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+        <div><h4>Calidad del Servicio</h4><p>Respuestas más rápidas, precisas y personalizadas para cada cliente.</p></div>
+      </div>
+      <div class="ben-card">
+        <div class="ben-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C49A3C" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></div>
+        <div><h4>Fortalecimiento de Marca</h4><p>Posiciona a Palacio del Café como líder innovador que respeta su legado.</p></div>
+      </div>
+      <div class="ben-card">
+        <div class="ben-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C49A3C" stroke-width="1.5" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+        <div><h4>Retorno de Inversión</h4><p>Aumento de la rentabilidad a largo plazo mediante decisiones basadas en datos.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="tl-sec">
+    <div class="tl-top">
+      <div class="tl-top-left">
+        <span class="tl-kicker">Hoja de Ruta · 12 Meses</span>
+        <h2>Plan de Implementación</h2>
+      </div>
+      <div class="tl-prog-wrap">
+        <span class="tl-prog-label" id="prog-label">0 de 5 completadas</span>
+        <div class="tl-prog-track"><div class="tl-prog-fill" id="prog-fill"></div></div>
+      </div>
+    </div>
+    <div class="tl-pills" id="pills"></div>
+    <div class="tl-track" id="steps"></div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:14px;width:100%;">
+      <a href="https://notebooklm.google.com/notebook/b01ab4d3-cbf7-493a-8f3a-07e296c99e2e"
+         target="_blank"
+         style="display:inline-flex;align-items:center;gap:10px;
+                background:rgba(196,154,60,.1);border:1px solid rgba(196,154,60,.3);
+                border-radius:2px;padding:10px 22px;
+                font-family:'Jost',sans-serif;font-size:.72rem;font-weight:600;
+                letter-spacing:1.5px;text-transform:uppercase;
+                color:var(--gold-light);text-decoration:none;
+                transition:background .2s,border-color .2s;"
+         onmouseover="this.style.background='rgba(196,154,60,.2)';this.style.borderColor='rgba(196,154,60,.6)'"
+         onmouseout="this.style.background='rgba(196,154,60,.1)';this.style.borderColor='rgba(196,154,60,.3)'">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E8C97A" stroke-width="1.8" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Ver herramienta de asistente
+      </a>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <div class="footer-dot"></div>
+        <p>Palacio del Café &nbsp;·&nbsp; Aroma Digital &nbsp;·&nbsp; 2026</p>
+        <div class="footer-dot"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const phases=[
+  {ph:'Fase 01',badge:'Meses 1–2',title:'Diagnóstico y Unificación de Datos',
+   desc:'Mapeo completo de datos dispersos e integración en una plataforma centralizada para análisis holístico y toma de decisiones integrada.',
+   dur:'8 semanas · Alta prioridad',
+   items:['Auditoría de fuentes de datos actuales (ventas, operaciones, RRHH)','Selección e implementación de plataforma Data Warehouse centralizada','Dashboard piloto con KPIs clave en tiempo real','Informe de brechas tecnológicas y plan de acción']},
+  {ph:'Fase 02',badge:'Meses 3–4',title:'Automatización de Comunicaciones',
+   desc:'Implementar IA generativa para una comunicación consistente, personalizada y auténtica que refleje el tono y valores de la marca.',
+   dur:'8 semanas · Prioridad media-alta',
+   items:['Definición del "tono de voz" de marca con guías para IA','Herramienta interna de generación de contenido (emails, redes, menús)','Flujos automatizados de comunicación entre departamentos','Sistema de respuestas personalizadas a clientes frecuentes']},
+  {ph:'Fase 03',badge:'Meses 5–6',title:'Capacitación y Cultura Digital',
+   desc:'Formación progresiva del equipo en el uso correcto y ético de herramientas de IA, construyendo innovación sin perder la esencia artesanal.',
+   dur:'8 semanas · Proceso continuo',
+   items:['Programa de formación en IA por roles (baristas, administración, dirección)','Manual de buenas prácticas y uso responsable (ISO/IEC 42001)','Talleres mensuales de innovación y co-creación con el equipo','Indicadores de adopción tecnológica por departamento']},
+  {ph:'Fase 04',badge:'Meses 7–9',title:'Gobernanza, Seguridad y Auditoría',
+   desc:'Establecer el marco ético y de seguridad para el uso de IA alineado con ISO/IEC 42001, asegurando protección de datos y cumplimiento regulatorio.',
+   dur:'12 semanas · Nivel estratégico',
+   items:['Política interna de IA responsable y gobernanza de datos','Implementación de controles de seguridad y acceso diferenciado','Protocolo de auditoría trimestral de sistemas de IA','Reporte de cumplimiento ISO/IEC 42001 con plan de mejora continua']},
+  {ph:'Fase 05',badge:'Meses 10–12',title:'Medición de ROI y Escalabilidad',
+   desc:'Evaluar el impacto real de la transformación digital, medir el retorno de inversión y definir el roadmap de expansión hacia el segundo año.',
+   dur:'12 semanas · Alto impacto',
+   items:['Dashboard de ROI con métricas de eficiencia, NPS y rentabilidad','Análisis comparativo pre/post implementación de IA','Presentación ejecutiva de resultados al liderazgo','Roadmap Año 2: IA predictiva, personalización avanzada y nuevos canales']}
+];
+
+const done=new Set(), open=new Set();
+const pillsEl=document.getElementById('pills');
+const stepsEl=document.getElementById('steps');
+const progFill=document.getElementById('prog-fill');
+const progLabel=document.getElementById('prog-label');
+
+function render(){
+  pillsEl.innerHTML='';
+  stepsEl.innerHTML='';
+  phases.forEach((p,i)=>{
+    // pill
+    const pill=document.createElement('div');
+    pill.className='tl-pill'+(done.has(i)?' done':'');
+    pill.innerHTML=`
+      <span class="pill-num">${p.ph}</span>
+      <div class="pill-indicator">
+        <svg class="pill-check" width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="#C49A3C" stroke-width="2.5" stroke-linecap="round"><polyline points="3 8 7 12 13 5"/></svg>
+        <div class="pill-dot"></div>
+      </div>
+      <span class="pill-lbl">${p.title.split(' ').slice(0,2).join(' ')}</span>`;
+    pill.onclick=()=>toggleDone(i);
+    pillsEl.appendChild(pill);
+
+    // step
+    const isActive=done.has(i), isOpen=open.has(i);
+    const step=document.createElement('div');
+    step.className='tl-step'+(isActive?' active':'')+(isOpen?' open':'');
+    step.innerHTML=`
+      <div class="tl-dot-col">
+        <div class="tl-dot">
+          ${isActive
+            ? `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#2A1208" stroke-width="2.5" stroke-linecap="round"><polyline points="3 8 7 12 13 5"/></svg>`
+            : `<span class="dot-num">${i+1}</span>`}
+        </div>
+      </div>
+      <div class="tl-card">
+        <div class="card-top">
+          <div class="card-meta">
+            <span class="card-phase">${p.ph}</span>
+            <span class="card-badge">${p.badge}</span>
+          </div>
+          <div class="card-toggle">
+            <svg viewBox="0 0 12 12" fill="none" stroke="rgba(251,248,242,.4)" stroke-width="1.5" stroke-linecap="round"><polyline points="2 4 6 8 10 4"/></svg>
+          </div>
+        </div>
+        <div class="card-title">${p.title}</div>
+        <div class="card-desc">${p.desc}</div>
+        <div class="card-details">
+          <div class="deliverables">
+            <div class="del-label">Entregables clave</div>
+            ${p.items.map(d=>`<div class="del-item"><div class="del-dot"></div>${d}</div>`).join('')}
+          </div>
+          <div class="card-footer">
+            <div class="card-dur">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="6" cy="6" r="5"/><polyline points="6 3 6 6 8 8"/></svg>
+              ${p.dur}
+            </div>
+          </div>
+        </div>
+      </div>`;
+    step.onclick=()=>toggleOpen(i);
+    stepsEl.appendChild(step);
+  });
+  const pct=(done.size/phases.length)*100;
+  progFill.style.width=pct+'%';
+  progLabel.textContent=done.size+' de '+phases.length+' completadas';
+}
+
+function toggleDone(i){ done.has(i)?done.delete(i):done.add(i); if(done.has(i))open.add(i); render(); }
+function toggleOpen(i){ open.has(i)?open.delete(i):open.add(i); render(); }
+
+// Scroll reveal
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.style.animationPlayState='running'; io.unobserve(e.target); }});
+},{threshold:0.1});
+document.querySelectorAll('.sec').forEach((s,i)=>{
+  s.style.cssText+=`animation:rise .55s cubic-bezier(.22,1,.36,1) ${i*.06}s both; animation-play-state:paused;`;
+  io.observe(s);
+});
+
+render();
+</script>
+</body>
+</html>
